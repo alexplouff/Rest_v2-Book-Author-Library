@@ -1,0 +1,14 @@
+
+#bookTableContainer, authorTableContainer{
+    width:95vw;
+    height:30vw;
+}
+
+#bookTable, #authorTable{
+    margin-top: 5%;
+    margin-left: 8%;
+}
+
+#bookForm, #authorForm{
+    float:right;
+}
