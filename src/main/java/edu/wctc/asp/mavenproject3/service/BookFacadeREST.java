@@ -5,6 +5,7 @@
  */
 package edu.wctc.asp.mavenproject3.service;
 
+import edu.wctc.asp.mavenproject3.entity.Author;
 import edu.wctc.asp.mavenproject3.entity.Book;
 import java.util.List;
 import javax.ejb.Stateless;
@@ -28,7 +29,8 @@ import javax.ws.rs.Produces;
 public class BookFacadeREST extends AbstractFacade<Book> {
     @PersistenceContext(unitName = "edu.wctc.asp_Rest_v2_war_1.0-SNAPSHOTPU")
     private EntityManager em;
-
+    private Author author;
+    private AuthorFacadeREST authorService;
     public BookFacadeREST() {
         super(Book.class);
     }
@@ -41,9 +43,11 @@ public class BookFacadeREST extends AbstractFacade<Book> {
     }
 
     @PUT
-    @Path("{id}")
+    @Path("{id}/{authorID}")
     @Consumes({"application/json"})
-    public void edit(@PathParam("id") Integer id, Book entity) {
+    public void edit(@PathParam("id") Integer id, @PathParam("authorID") Integer authorID, Book entity) {
+        author = authorService.find(authorID);
+        entity.setAuthorID(author);
         super.edit(entity);
     }
 
@@ -59,7 +63,9 @@ public class BookFacadeREST extends AbstractFacade<Book> {
     public Book find(@PathParam("id") Integer id) {
         return super.find(id);
     }
-
+    
+    
+    
     @GET
     @Override
     @Produces({"application/json"})
