@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package edu.wctc.asp.mavenproject3.service;
 
 import edu.wctc.asp.mavenproject3.entity.Author;
@@ -44,7 +40,7 @@ public class AuthorFacadeREST extends AbstractFacade<Author> {
     @Path("{id}")
     @Consumes({"application/json"})
     public void edit(@PathParam("id") Integer id, Author entity) {
-        entity.setAuthorID(id);
+        entity.setAuthorID(entity.getAuthorID());
         super.edit(entity);
     }
 
